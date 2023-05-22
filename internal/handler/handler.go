@@ -6,10 +6,10 @@ import (
 )
 
 type Handler struct {
-	services *service.EmployeeService
+	services service.EmployeeService
 }
 
-func NewHandeler(service *service.EmployeeService) *Handler{
+func NewHandeler(service service.EmployeeService) *Handler{
 	return &Handler{
 		services: service,
 	}
@@ -22,8 +22,8 @@ func (h *Handler) SetupRoutes(gin *gin.Engine) {
 		{
 			employees.POST("/", h.AddEmployee)
 			employees.DELETE("/:id", h.DeleteEmployee)
-			employees.GET("/company/:id", h.GetAllEmployeeCompany)
-			employees.GET("/company/:id/department/:id", h.GetAllEmployeeDepartament)
+			employees.GET("/company/:company_name", h.GetAllEmployeeCompany)
+			employees.GET("/company/:company_name/department/:department_id", h.GetAllEmployeeDepartament)
 			employees.PUT("/:id", h.UpdateEmployee)
 		}
 	}

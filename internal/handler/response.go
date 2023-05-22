@@ -6,6 +6,6 @@ type errorResponse struct {
 	Message string `json:"message"`
 }
 
-func newErrorResponse(c *gin.Context, message string, statusCode int) {
+func ErrorResponse(c *gin.Context, message string, statusCode int) {
 	c.AbortWithStatusJSON(statusCode, errorResponse{message})
 }
